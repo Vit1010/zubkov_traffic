@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitaly Zubkov | Traffic Architect</title>
+    <meta name="description" content="Настройка рекламы Авито и Яндекс.Директ. Системный поток заявок для бизнеса.">
+    
+    <!-- Google Fonts: Manrope (Modern, Clean) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --bg-color: #121212;
+            --surface-color: #1e1e1e;
+            --text-main: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-blue: #2962ff;
+            --accent-green: #00e676;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --font-main: 'Manrope', sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- UTILITY CLASSES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-blue), #1e40af);
+            color: white;
+            box-shadow: 0 4px 15px rgba(41, 98, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(41, 98, 255, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        .btn-outline:hover {
+            background: rgba(41, 98, 255, 0.1);
+        }
+
+        .highlight {
+            color: var(--accent-blue);
+        }
+        
+        .highlight-green {
+            color: var(--accent-green);
+        }
+
+        h1, h2, h3 {
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(to right, #fff, #a0a0a0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(18, 18, 18, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 20px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+            overflow: hidden;
+        }
+
+        /* Background glow effect */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(41, 98, 255, 0.15) 0%, rgba(18, 18, 18, 0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- PHILOSOPHY SECTION (UPDATED FOR SYMMETRY) --- */
+        .philosophy-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 30px;
+            border-radius: 16px;
+            transition: var(--transition);
+            
+            /* Flex properties for symmetry */
+            flex: 1 1 300px;
+            max-width: 400px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(41, 98, 255, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* --- CASES SECTION (UPDATED FOR SYMMETRY) --- */
+        .cases-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .case-card {
+            background: #181818;
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid var(--glass-border);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            
+            /* Flex properties for symmetry */
+            flex: 1 1 350px;
+            max-width: 450px; 
+        }
+
+        .case-card:hover {
+            border-color: var(--accent-blue);
+        }
+
+        .case-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .case-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .case-metrics {
+            margin-bottom: 25px;
+        }
+
+        .metric {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .metric strong {
+            color: var(--accent-green);
+            font-weight: 700;
+        }
+
+        .case-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-blue);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .case-link:hover {
+            text-decoration: underline;
+        }
+
+        /* --- TRAFFIC SOURCES --- */
+        .sources-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+        }
+
+        .source-item {
+            flex: 1;
+            min-width: 300px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .source-item h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .source-icon {
+            font-size: 1.8rem;
+        }
+        
+        .avito-color { color: #96cb2e; } /* Avito-ish color */
+        .yandex-color { color: #fc3f1d; } /* Yandex-ish color */
+
+        .source-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+        }
+
+        .source-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        /* --- TECHNICAL SETUP --- */
+        .tech-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .tech-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .tech-icon {
+            background: rgba(41, 98, 255, 0.1);
+            color: var(--accent-blue);
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        /* --- AUDIT (TRIPWIRE) --- */
+        .audit-section {
+            background: linear-gradient(135deg, #1e1e1e, #121212);
+            border: 1px solid var(--accent-blue);
+            border-radius: 24px;
+            padding: 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(41, 98, 255, 0.1);
+        }
+        
+        .audit-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+        }
+
+        .audit-tag {
+            background: var(--accent-blue);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .audit-subtext {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid var(--glass-border);
+            padding: 80px 0 40px;
+            text-align: center;
+        }
+
+        .footer-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .copyright {
+            margin-top: 60px;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            h2 { font-size: 2rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .nav-links { display: none; } /* Ideally would implement JS toggle */
+            .mobile-menu-btn { display: block; }
+            .btn { width: 100%; }
+            .source-item { min-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">Vitaly Zubkov</div>
+            <nav class="nav-links">
+                <a href="#philosophy">Подход</a>
+                <a href="#cases">Кейсы</a>
+                <a href="#services">Услуги</a>
+                <a href="#footer">Контакты</a>
+            </nav>
+            <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            <a href="https://t.me/Vit1010" class="btn btn-primary" style="padding: 10px 20px; width: auto;">
+                <i class="fab fa-telegram-plane"></i> Telegram
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Traffic Architect & <span class="highlight">Lead Gen Expert</span></h1>
+            <p>Создаю системный поток целевых заявок из Avito и Яндекс.Директа. Фокус на качестве лидов, а не на их количестве. Интегрирую маркетинг с вашей CRM.</p>
+            <a href="https://t.me/Vit1010" class="btn btn-primary">
+                Обсудить проект <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- PHILOSOPHY SECTION -->
+    <section id="philosophy" class="section">
+        <div class="container">
+            <h2>Почему со мной работают вдолгую?</h2>
+            <div class="philosophy-grid">
+                <!-- Card 1 -->
+                <article class="card">
+                    <div style="font-size: 2rem; color: var(--accent-blue); margin-bottom: 15px;">
+                        <i class="fas fa-filter"></i>
+                    </div>
+                    <h3>Фильтрация на входе</h3>
+                    <p>Отсекаю "мусорный" трафик минус-словами. Ваш отдел продаж работает только с целевыми лидами.</p>
+                </article>
+                <!-- Card 2 -->
+                <article class="card">
+                    <div style="font-size: 2rem; color: var(--accent-blue); margin-bottom: 15px;">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3>Прозрачность и Цифры</h3>
+                    <p>Никаких отчетов в Excel "на коленке". Интеграция с вашей CRM и автоматические сводные таблицы.</p>
+                </article>
+                <!-- Card 3 -->
+                <article class="card">
+                    <div style="font-size: 2rem; color: var(--accent-blue); margin-bottom: 15px;">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>Масштаб</h3>
+                    <p>Стратегии захвата выдачи на Авито (сетки аккаунтов) и работа с горячим спросом в Директе.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CASES SECTION -->
+    <section id="cases" class="section">
+        <div class="container">
+            <h2>Реализованные проекты и ниши</h2>
+            <div class="cases-grid">
+                
+                <!-- Card 1: Construction -->
+                <a href="case_construction.html" class="case-card">
+                    <div>
+                        <span class="case-tag">Construction (Flagship)</span>
+                        <h3 class="case-title">Стройка и Ремонт (Мех. штукатурка)</h3>
+                        <div class="case-metrics">
+                            <div class="metric"><i class="fas fa-check-circle"></i> Рост замеров: <strong>x2</strong></div>
+                            <div class="metric"><i class="fas fa-check-circle"></i> Снижение цены лида: <strong>-34%</strong></div>
+                        </div>
+                    </div>
+                    <span class="case-link">Подробнее <i class="fas fa-external-link-alt"></i></span>
+                </a>
+
+                <!-- Card 2: B2B -->
+                <a href="case_b2b_wholesale.html" class="case-card">
+                    <div>
+                        <span class="case-tag">B2B & Wholesale</span>
+                        <h3 class="case-title">Оптовая торговля и Производство</h3>
+                        <p style="font-size: 0.9rem; color: #888; margin-bottom: 15px;">Текстиль, Швейные цеха, Стройматериалы.</p>
+                        <div class="case-metrics">
+                            <div class="metric"><i class="fas fa-check-circle"></i> Снижение CPL в 13 раз: <strong>650₽</strong></div>
+                            <div class="metric"><i class="fas fa-check-circle"></i> ROAS: <strong>2500%</strong></div>
+                        </div>
+                    </div>
+                    <span class="case-link">Подробнее <i class="fas fa-external-link-alt"></i></span>
+                </a>
+
+                <!-- Card 3: EdTech -->
+                <a href="case_edtech.html" class="case-card">
+                    <div>
+                        <span class="case-tag">EdTech & Infobiz</span>
+                        <h3 class="case-title">Онлайн-школы</h3>
+                        <p style="font-size: 0.9rem; color: #888; margin-bottom: 15px;">Fashion, Йога, Танцы</p>
+                        <div class="case-metrics">
+                            <div class="metric"><i class="fas fa-check-circle"></i> ROAS: <strong>>10 000%</strong></div>
+                            <div class="metric"><i class="fas fa-check-circle"></i> 12 000+ подписчиков по: <strong>71 руб.</strong></div>
+                        </div>
+                    </div>
+                    <span class="case-link">Подробнее <i class="fas fa-external-link-alt"></i></span>
+                </a>
+
+                <!-- Card 4: Auto -->
+                <a href="case_auto.html" class="case-card">
+                    <div>
+                        <span class="case-tag">Auto Business</span>
+                        <h3 class="case-title">Выкуп и продажа авто</h3>
+                        <div class="case-metrics">
+                            <div class="metric"><i class="fas fa-check-circle"></i> Стабильный поток в перегретой нише</div>
+                            <div class="metric"><i class="fas fa-check-circle"></i> Целевые лиды на выкуп авто</div>
+                        </div>
+                    </div>
+                    <span class="case-link">Подробнее <i class="fas fa-external-link-alt"></i></span>
+                </a>
+
+                <!-- Card 5: Medicine -->
+                <a href="case_medicine.html" class="case-card">
+                    <div>
+                        <span class="case-tag">Medicine</span>
+                        <h3 class="case-title">Медицина и Стоматология</h3>
+                        <div class="case-metrics">
+                            <div class="metric"><i class="fas fa-check-circle"></i> Полная загрузка клиники</div>
+                            <div class="metric"><i class="fas fa-check-circle"></i> Лиды на имплантацию</div>
+                        </div>
+                    </div>
+                    <span class="case-link">Подробнее <i class="fas fa-external-link-alt"></i></span>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TRAFFIC SOURCES -->
+    <section id="services" class="section">
+        <div class="container">
+            <h2>Источники трафика</h2>
+            <div class="sources-wrapper">
+                <div class="source-item">
+                    <h3><i class="fas fa-bullhorn avito-color source-icon"></i> Avito</h3>
+                    <ul class="source-list">
+                        <li>Стратегия доминации</li>
+                        <li>SEO-копирайтинг</li>
+                        <li>Масштабирование сеток (2-4+ аккаунта)</li>
+                    </ul>
+                </div>
+                <div class="source-item">
+                    <h3><i class="fab fa-yandex yandex-color source-icon"></i> Yandex Direct</h3>
+                    <ul class="source-list">
+                        <li>Поиск и РСЯ</li>
+                        <li>Ретаргетинг</li>
+                        <li>Глубокая проработка семантики</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECHNICAL SETUP -->
+    <section class="section">
+        <div class="container">
+            <h2>Техническая упаковка и Интеграции</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 40px; margin-top: -30px;">(Стоимость обсуждается индивидуально)</p>
+            
+            <div class="tech-list">
+                <div class="tech-item">
+                    <div class="tech-icon"><i class="fas fa-robot"></i></div>
+                    <div>
+                        <h4>Нет CRM / 1C</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Настройка потока заявок в Telegram-бот или Google Таблицы.</p>
+                    </div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon"><i class="fas fa-network-wired"></i></div>
+                    <div>
+                        <h4>Есть CRM (Bitrix/Amo)</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Маркировка источников, авто-распределение, телефония.</p>
+                    </div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon"><i class="fas fa-laptop-code"></i></div>
+                    <div>
+                        <h4>Сайты</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Сборка конверсионных лендингов и квизов (Tilda/Flexbe).</p>
+                    </div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon"><i class="fas fa-chart-line"></i></div>
+                    <div>
+                        <h4>Аналитика</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Сквозная аналитика, колл-трекинг.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AUDIT TRIPWIRE -->
+    <section class="section">
+        <div class="container">
+            <div class="audit-section">
+                <span class="audit-tag">Платный Стратегический Аудит</span>
+                <h3>Глубокий разбор вашей рекламы, сайта и CRM</h3>
+                <p style="max-width: 600px; margin: 15px auto;">Найду точки слива бюджета. Вы получите пошаговый план (Roadmap) роста.</p>
+                <div class="audit-subtext">Независимая оценка без навязывания услуг.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="footer">
+        <div class="container footer-cta">
+            <h2>Нужен стабильный поток клиентов?</h2>
+            <a href="https://t.me/Vit1010" class="btn btn-primary" style="padding: 18px 36px; font-size: 1.1rem;">
+                <i class="fab fa-telegram-plane"></i> Связаться в Telegram
+            </a>
+            <div class="copyright">
+                &copy; 2025 Vitaly Zubkov. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
