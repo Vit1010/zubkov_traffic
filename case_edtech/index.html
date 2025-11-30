@@ -78,7 +78,7 @@
             margin-right: auto; 
         }
 
-        /* STATS GRID (CENTERED FLEX) */
+        /* STATS GRID */
         .hero-stats { 
             display: flex; 
             flex-wrap: wrap; 
@@ -90,11 +90,9 @@
             padding: 30px; 
             border-radius: 12px; 
             border: 1px solid var(--border-color); 
-            
-            /* Размеры карточек */
             flex: 1 1 250px; 
             max-width: 350px; 
-            text-align: center; /* ИСПРАВЛЕНО: Центровка текста */
+            text-align: center;
         }
         .stat-val { font-size: 36px; font-weight: 700; color: var(--accent-purple); margin-bottom: 8px; display: block; }
         .stat-label { font-size: 14px; color: var(--text-secondary); text-transform: uppercase; }
@@ -107,16 +105,25 @@
             padding: 40px;
             margin-bottom: 60px;
             border: 1px solid var(--border-color);
+            /* Центровка контента в карточке */
+            text-align: center;
         }
-        .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px; flex-wrap: wrap; gap: 20px;}
-        .project-title h3 { font-size: 28px; margin-bottom: 8px; }
+        /* Header карточки по центру */
+        .project-header { 
+            display: flex; 
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px; 
+        }
+        .project-title h3 { font-size: 28px; margin-bottom: 5px; line-height: 1.3; }
         .project-meta { font-size: 14px; color: var(--text-secondary); }
         
-        /* METRICS GRID (CENTERED FLEX) */
+        /* METRICS GRID */
         .metrics-grid {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center; /* Центруем карточки */
+            justify-content: center;
             gap: 20px;
             margin-bottom: 30px;
             background: rgba(0,0,0,0.2);
@@ -124,8 +131,8 @@
             border-radius: 12px;
         }
         .metric-item { 
-            flex: 1 1 160px; /* Мин ширина карточки метрики */
-            text-align: center; /* Текст внутри по центру */
+            flex: 1 1 160px; 
+            text-align: center; 
             max-width: 250px;
         }
         .metric-item strong { display: block; font-size: 24px; color: #fff; }
@@ -133,7 +140,7 @@
 
         .highlight-green { color: var(--accent-green) !important; }
 
-        /* SCREENSHOT CONTAINER (UPDATED FOR LIGHTBOX) */
+        /* SCREENSHOT CONTAINER (FIXED HEIGHT + CROP LIKE B2B) */
         .screenshot-container {
             margin-top: 30px;
             border-radius: 12px;
@@ -141,14 +148,32 @@
             border: 1px solid #333;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             transition: 0.3s;
-            cursor: zoom-in; /* Курсор лупы */
+            cursor: zoom-in;
             position: relative;
+            
+            /* ФИКСИРОВАННАЯ ВЫСОТА ДЛЯ СИММЕТРИИ */
+            height: 240px;
+            width: 100%;
         }
         .screenshot-container:hover {
             border-color: var(--accent-purple);
             transform: translateY(-5px);
         }
-        /* Оверлей с иконкой лупы при наведении */
+        
+        .screenshot-container img {
+            width: 100%;
+            height: 100%; /* Заполняем контейнер */
+            display: block;
+            opacity: 0.9;
+            transition: 0.3s;
+            
+            /* КРОП (ОБРЕЗКА) */
+            object-fit: cover;
+            object-position: top center; /* Показываем верх скриншота */
+        }
+        
+        .screenshot-container:hover img { opacity: 0.4; }
+        
         .screenshot-container::after {
             content: "🔍";
             position: absolute;
@@ -160,24 +185,12 @@
             transition: 0.3s;
             pointer-events: none;
         }
-        .screenshot-container:hover::after {
-            opacity: 1;
-        }
-        .screenshot-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            opacity: 0.9;
-            transition: 0.3s;
-        }
-        .screenshot-container:hover img { opacity: 0.4; /* Затемняем картинку, чтобы видно было лупу */ }
+        .screenshot-container:hover::after { opacity: 1; }
         
         .screenshot-caption {
-            padding: 10px;
-            background: #111;
-            font-size: 12px;
-            color: #666;
-            text-align: center;
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            padding: 10px; background: rgba(0,0,0,0.8);
+            font-size: 12px; color: #ccc; text-align: center;
             border-top: 1px solid #333;
         }
 
@@ -201,36 +214,27 @@
 
         /* --- LIGHTBOX (MODAL) STYLES --- */
         .lightbox {
-            display: none; /* Скрыто по умолчанию */
+            display: none; 
             position: fixed; 
             z-index: 2000; 
-            padding-top: 0; /* Убрали отступ сверху */
+            padding-top: 0; 
             left: 0;
             top: 0;
             width: 100%; 
             height: 100%; 
-            overflow: hidden; /* Блокируем скролл фона */
+            overflow: hidden; 
             background-color: rgba(0,0,0,0.95); 
             opacity: 0;
             transition: opacity 0.3s ease;
-            
-            /* МАГИЯ ЦЕНТРОВКИ (FLEXBOX) */
-            align-items: center;     /* Вертикально */
-            justify-content: center; /* Горизонтально */
+            align-items: center; justify-content: center; pointer-events: none;
         }
 
-        .lightbox.show {
-            display: flex; /* Включаем Flex при открытии */
-            opacity: 1;
-        }
+        .lightbox.show { display: flex; opacity: 1; pointer-events: auto; }
 
         .lightbox-content {
-            margin: 0; /* Убираем авто-маржины, флекс сам центрует */
-            display: block;
-            width: auto;
-            max-width: 95%; /* На мобиле почти во всю ширину */
-            max-height: 90vh; /* Чтобы не вылезало за экран по высоте */
-            object-fit: contain; /* Сохраняем пропорции */
+            margin: 0; display: block; width: auto;
+            max-width: 95%; max-height: 90vh; 
+            object-fit: contain; /* Тут показываем картинку целиком */
             border-radius: 8px;
             box-shadow: 0 0 20px rgba(187, 134, 252, 0.2);
         }
@@ -244,7 +248,7 @@
             font-weight: bold;
             transition: 0.3s;
             cursor: pointer;
-            z-index: 2001; /* Чтобы крестик был поверх всего */
+            z-index: 2001;
         }
 
         .close:hover,
@@ -252,12 +256,6 @@
             color: var(--accent-purple);
             text-decoration: none;
             cursor: pointer;
-        }
-
-        @media only screen and (max-width: 700px){
-            .lightbox-content {
-                width: 95%;
-            }
         }
     </style>
 </head>
@@ -272,8 +270,8 @@
 
     <section class="hero">
         <div class="container">
-            <span class="niche-tag">Ниша: EdTech и Инфобизнес</span>
-            <h1>Системная закупка трафика: 16&nbsp;000+ подписчиков в Telegram</h1>
+            <span class="niche-tag">Ниша: EdTech и&nbsp;Инфобизнес</span>
+            <h1>Системная закупка трафика: 16&nbsp;000+ подписчиков в&nbsp;Telegram</h1>
             <p class="subhead">Кейсы по масштабированию онлайн-школ (Fashion, Йога, Хореография) через Яндекс.Директ.</p>
             
             <div class="hero-stats">
@@ -384,9 +382,9 @@
                 </div>
 
                 <div>
-                    <h4 style="color: #fff; margin-bottom: 10px;">ЭТАП 2: Монетизация и Ретаргетинг (Июль — Октябрь)</h4>
+                    <h4 style="color: #fff; margin-bottom: 10px;">ЭТАП 2: Монетизация и&nbsp;Ретаргетинг (Июль — Октябрь)</h4>
                     <p style="color: #a0a0a0; margin-bottom: 15px;">
-                        Работа на окупаемость. Прямая реклама курса (150к руб) + дожим базы в Telegram.
+                        Работа на окупаемость. Прямая реклама курса (150к руб) + дожим базы в&nbsp;Telegram.
                         <strong>ROAS > 10 000%</strong>.
                     </p>
                     <div class="metrics-grid" style="background: rgba(41, 98, 255, 0.1);">
@@ -409,7 +407,7 @@
             <div class="project-card">
                 <div class="project-header">
                     <div class="project-title">
-                        <h3>2. Академия Йоги и Медитации</h3>
+                        <h3>2. Академия Йоги и&nbsp;Медитации</h3>
                         <p class="project-meta">Период: Октябрь 2024 – Октябрь 2025 (12 месяцев)</p>
                     </div>
                 </div>
