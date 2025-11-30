@@ -77,8 +77,8 @@
         .stat-card {
             background: var(--card-bg); padding: 30px; border-radius: 12px;
             border: 1px solid var(--border-color);
-            flex: 1 1 220px; /* Мин ширина 220px */
-            max-width: 300px; /* Не растягивать слишком сильно */
+            flex: 1 1 220px; 
+            max-width: 300px;
             text-align: left;
         }
         .stat-val { font-size: 36px; font-weight: 700; color: var(--accent-green); margin-bottom: 8px; display: block; }
@@ -121,7 +121,9 @@
         .infra-card {
             background: var(--card-bg); padding: 40px; border-radius: 12px;
             border: 1px solid var(--border-color); transition: 0.3s;
-            flex: 1 1 320px; /* Мин ширина 320px */
+            
+            /* ИЗМЕНЕНИЕ: 320px ширина, 0 рост (не растягиваться) */
+            flex: 0 1 320px; 
             max-width: 400px;
         }
         .infra-card:hover { transform: translateY(-5px); border-color: var(--accent-blue); }
@@ -141,8 +143,10 @@
         @media (max-width: 768px) {
             h1 { font-size: 32px; }
             .cs-grid { grid-template-columns: 1fr; gap: 40px; }
-            .hero-stats { justify-content: flex-start; } /* На мобиле можно вернуть влево */
+            .hero-stats { justify-content: flex-start; }
             .hero-stats .stat-card { max-width: 100%; }
+            /* На мобиле растягиваем на всю ширину */
+            .infra-card { flex: 1 1 100%; max-width: 100%; }
         }
     </style>
 </head>
