@@ -133,7 +133,7 @@
 
         .highlight-green { color: var(--accent-green) !important; }
 
-        /* SCREENSHOT CONTAINER */
+        /* SCREENSHOT CONTAINER (UPDATED FOR LIGHTBOX) */
         .screenshot-container {
             margin-top: 30px;
             border-radius: 12px;
@@ -141,10 +141,27 @@
             border: 1px solid #333;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             transition: 0.3s;
+            cursor: zoom-in; /* Курсор лупы */
+            position: relative;
         }
         .screenshot-container:hover {
             border-color: var(--accent-purple);
             transform: translateY(-5px);
+        }
+        /* Оверлей с иконкой лупы при наведении */
+        .screenshot-container::after {
+            content: "🔍";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 40px;
+            opacity: 0;
+            transition: 0.3s;
+            pointer-events: none;
+        }
+        .screenshot-container:hover::after {
+            opacity: 1;
         }
         .screenshot-container img {
             width: 100%;
@@ -153,7 +170,8 @@
             opacity: 0.9;
             transition: 0.3s;
         }
-        .screenshot-container:hover img { opacity: 1; }
+        .screenshot-container:hover img { opacity: 0.4; /* Затемняем картинку, чтобы видно было лупу */ }
+        
         .screenshot-caption {
             padding: 10px;
             background: #111;
@@ -180,6 +198,62 @@
         .cta-btn:hover { background: #d0aaff; box-shadow: 0 0 20px rgba(187, 134, 252, 0.4); }
 
         @media (max-width: 768px) { h1 { font-size: 32px; } }
+
+        /* --- LIGHTBOX (MODAL) STYLES --- */
+        .lightbox {
+            display: none; /* Hidden by default */
+            position: fixed; 
+            z-index: 2000; 
+            padding-top: 50px; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.95); 
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.show {
+            display: block;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 1200px;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(187, 134, 252, 0.2);
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: var(--accent-purple);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @media only screen and (max-width: 700px){
+            .lightbox-content {
+                width: 95%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -299,7 +373,7 @@
                         Параллельно получили 59 заявок на курс (доп. выручка).
                     </p>
                     <div class="screenshot-container">
-                        <img src="../img/fashion_growth.png" alt="Статистика набора базы (12к подписчиков)">
+                        <img src="../img/fashion_growth.png" alt="Статистика набора базы (12к подписчиков)" class="zoom-img">
                         <div class="screenshot-caption">Скриншот Этап 1: Расход 921к, Получено 12 911 подписчиков</div>
                     </div>
                 </div>
@@ -321,7 +395,7 @@
                         </div>
                     </div>
                     <div class="screenshot-container">
-                        <img src="../img/fashion_sales.png" alt="Статистика продаж и ретаргетинга">
+                        <img src="../img/fashion_sales.png" alt="Статистика продаж и ретаргетинга" class="zoom-img">
                         <div class="screenshot-caption">Скриншот Этап 2: Продуктовые кампании и Ретаргетинг</div>
                     </div>
                 </div>
@@ -353,7 +427,7 @@
                     <strong>Инсайт:</strong> Удерживали стоимость клика на уровне 16 руб. на объеме 29 000 переходов.
                 </p>
                 <div class="screenshot-container">
-                    <img src="../img/yoga_stats.png" alt="Статистика рекламного кабинета (Йога)">
+                    <img src="../img/yoga_stats.png" alt="Статистика рекламного кабинета (Йога)" class="zoom-img">
                     <div class="screenshot-caption">Годовая статистика: 29 000 переходов по 16 рублей</div>
                 </div>
             </div>
@@ -384,7 +458,7 @@
                     </div>
                 </div>
                 <div class="screenshot-container">
-                    <img src="../img/dance_stats.png" alt="Статистика рекламного кабинета (Хореография)">
+                    <img src="../img/dance_stats.png" alt="Статистика рекламного кабинета (Хореография)" class="zoom-img">
                     <div class="screenshot-caption">Скриншот статистики за 3 месяца работы</div>
                 </div>
             </div>
@@ -399,6 +473,39 @@
             <a href="https://t.me/Vit1010" class="cta-btn">Обсудить проект в Telegram</a>
         </div>
     </section>
+
+    <div id="lightbox" class="lightbox">
+        <span class="close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <script>
+        // Get elements
+        const modal = document.getElementById("lightbox");
+        const modalImg = document.getElementById("lightbox-img");
+        const closeBtn = document.getElementsByClassName("close")[0];
+        const images = document.querySelectorAll(".zoom-img");
+
+        // Loop through images and add click event
+        images.forEach(img => {
+            img.addEventListener("click", function() {
+                modal.classList.add("show"); // Show modal with transition
+                modalImg.src = this.src;
+            });
+        });
+
+        // Close on X click
+        closeBtn.onclick = function() {
+            modal.classList.remove("show");
+        }
+
+        // Close on background click
+        modal.onclick = function(event) {
+            if (event.target === modal) {
+                modal.classList.remove("show");
+            }
+        }
+    </script>
 
 </body>
 </html>
