@@ -78,13 +78,20 @@
             margin-right: auto;
         }
 
-        /* STATS GRID (CENTERED) */
-        .hero-stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
+        /* STATS GRID (CENTERED FLEX) */
+        .hero-stats { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 24px; 
+        }
         .stat-card { 
             background: var(--card-bg); 
             padding: 30px; 
             border-radius: 12px; 
             border: 1px solid var(--border-color); 
+            
+            /* Размеры карточек */
             flex: 1 1 250px; 
             max-width: 350px; 
             text-align: left;
@@ -105,18 +112,22 @@
         .project-title h3 { font-size: 28px; margin-bottom: 8px; }
         .project-meta { font-size: 14px; color: var(--text-secondary); }
         
-        /* METRICS GRID (CENTERED) */
+        /* METRICS GRID (CENTERED FLEX) */
         .metrics-grid {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
+            justify-content: center; /* Центруем карточки */
             gap: 20px;
             margin-bottom: 30px;
             background: rgba(0,0,0,0.2);
             padding: 20px;
             border-radius: 12px;
         }
-        .metric-item { flex: 1 1 140px; text-align: center; }
+        .metric-item { 
+            flex: 1 1 160px; /* Мин ширина карточки метрики */
+            text-align: center; /* Текст внутри по центру */
+            max-width: 250px;
+        }
         .metric-item strong { display: block; font-size: 24px; color: #fff; }
         .metric-item span { font-size: 13px; color: var(--text-secondary); }
 
