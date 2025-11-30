@@ -388,14 +388,14 @@
             justify-content: center; 
         }
 
-        .tech-item {
+      .tech-item {
             display: flex;
             gap: 20px;
             align-items: flex-start;
             
-            /* Размеры карточек во Flex */
-            flex: 1 1 280px; /* Мин ширина 280px */
-            max-width: 400px; /* Чтобы не растягивались на весь экран */
+            /* ИЗМЕНЕНИЕ ЗДЕСЬ: */
+            flex: 0 1 320px; /* 0 = Не растягиваться. 320px = Фиксированная ширина */
+            width: 100%; /* Страховка для мобильных */
         }
 
         .tech-icon {
