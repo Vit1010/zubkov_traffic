@@ -69,7 +69,7 @@
         .stat-card { 
             background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1px solid var(--border-color); 
             flex: 1 1 250px; max-width: 350px; 
-            text-align: center; /* Центровка в Hero */
+            text-align: center;
         }
         .stat-val { font-size: 36px; font-weight: 700; color: var(--accent-cyan); margin-bottom: 8px; display: block; }
         .stat-label { font-size: 14px; color: var(--text-secondary); text-transform: uppercase; }
@@ -85,25 +85,36 @@
             border-radius: 16px;
             padding: 40px;
             border: 1px solid var(--border-color);
-            
             /* Logic for centering: */
             flex: 1 1 450px; /* Base width 450px */
             max-width: 600px; /* Don't get too wide */
             width: 100%;
-            
-            /* ИСПРАВЛЕНИЕ: Центровка текста внутри карточки */
-            text-align: center;
+            text-align: center; /* Центровка всего контента */
         }
 
         .project-header { 
             margin-bottom: 30px;
-            /* Центровка заголовка и даты */
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 10px;
         }
-        .project-title h3 { font-size: 28px; margin-bottom: 0; line-height: 1.3; }
+        
+        .project-title h3 { 
+            font-size: 28px; 
+            margin-bottom: 0; 
+            line-height: 1.3; 
+        }
+
+        /* СТИЛЬ ДЛЯ ПОДЗАГОЛОВКА В СКОБКАХ */
+        .project-title h3 span {
+            display: block; /* Перенос на новую строку */
+            margin-top: 5px; /* Отступ сверху */
+            font-size: 0.85em; /* Чуть меньше основного заголовка */
+            color: var(--text-secondary); /* Цвет второстепенного текста */
+            font-weight: 400; /* Обычная толщина */
+        }
+
         .project-meta { font-size: 14px; color: var(--text-secondary); }
         
         /* METRICS INSIDE CARD */
@@ -223,7 +234,7 @@
             <div class="project-card">
                 <div class="project-header">
                     <div class="project-title">
-                        <h3>1. Поставщик текстиля (Отели /&nbsp;HoReCa)</h3>
+                        <h3>1. Поставщик текстиля <span>(Отели /&nbsp;HoReCa)</span></h3>
                         <p class="project-meta">Период: Октябрь 2024 – Октябрь 2025 (12 месяцев)</p>
                     </div>
                 </div>
@@ -258,7 +269,7 @@
             <div class="project-card">
                 <div class="project-header">
                     <div class="project-title">
-                        <h3>2. Конструкторское бюро (Лекала и&nbsp;Коллекции)</h3>
+                        <h3>2. Конструкторское бюро <span>(Лекала и&nbsp;Коллекции)</span></h3>
                         <p class="project-meta">Период: Октябрь 2024 – Февраль 2025</p>
                     </div>
                 </div>
@@ -293,7 +304,7 @@
             <div class="project-card">
                 <div class="project-header">
                     <div class="project-title">
-                        <h3>3. Новый поставщик текстиля (Стартап)</h3>
+                        <h3>3. Новый поставщик текстиля <span>(Стартап)</span></h3>
                         <p class="project-meta">Период: Январь 2025 – Март 2025 (3 месяца)</p>
                     </div>
                 </div>
@@ -329,7 +340,7 @@
             <div class="project-card">
                 <div class="project-header">
                     <div class="project-title">
-                        <h3>4. Швейное производство (Киргизия)</h3>
+                        <h3>4. Швейное производство <span>(Киргизия)</span></h3>
                         <p class="project-meta">Спринт: 1.5 месяца</p>
                     </div>
                 </div>
@@ -367,7 +378,7 @@
             <div class="project-card">
                 <div class="project-header">
                     <div class="project-title">
-                        <h3>5. ПСК Эксперт (Стройматериалы)</h3>
+                        <h3>5. ПСК Эксперт <span>(Стройматериалы)</span></h3>
                         <p class="project-meta">Апрель 2023 – Ноябрь 2023</p>
                     </div>
                 </div>
