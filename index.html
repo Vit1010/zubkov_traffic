@@ -6,12 +6,10 @@
     <title>Vitaly Zubkov | Traffic Architect</title>
     <meta name="description" content="Настройка рекламы Авито и Яндекс.Директ. Системный поток заявок для бизнеса.">
     
-    <!-- Google Fonts: Manrope (Modern, Clean) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -218,7 +216,7 @@
             margin-right: auto;
         }
 
-        /* --- PHILOSOPHY SECTION (UPDATED FOR SYMMETRY) --- */
+        /* --- PHILOSOPHY SECTION (CENTERED) --- */
         .philosophy-grid {
             display: flex;
             flex-wrap: wrap;
@@ -233,9 +231,9 @@
             border-radius: 16px;
             transition: var(--transition);
             
-            /* Flex properties for symmetry */
-            flex: 1 1 300px;
-            max-width: 400px;
+            /* Фикс ширины для симметрии */
+            flex: 0 1 350px; /* Не растягиваться, база 350px */
+            min-width: 300px;
         }
 
         .card:hover {
@@ -255,11 +253,11 @@
             font-size: 0.95rem;
         }
 
-        /* --- CASES SECTION (UPDATED FOR SYMMETRY) --- */
+        /* --- CASES SECTION (PERFECT CENTERING FIX) --- */
         .cases-grid {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
+            justify-content: center; /* Центровка по горизонтали */
             gap: 25px;
         }
 
@@ -275,13 +273,15 @@
             position: relative;
             overflow: hidden;
             
-            /* Flex properties for symmetry */
-            flex: 1 1 350px;
-            max-width: 450px; 
+            /* Магия выравнивания: */
+            flex: 0 1 45%; /* Карточки занимают по 45% ширины (по 2 в ряд) */
+            min-width: 320px; /* Но не уже 320px */
+            max-width: 500px; /* И не шире 500px (чтобы 5-я не была гигантом) */
         }
 
         .case-card:hover {
             border-color: var(--accent-blue);
+            transform: translateY(-5px);
         }
 
         .case-tag {
@@ -341,6 +341,7 @@
         .source-item {
             flex: 1;
             min-width: 300px;
+            max-width: 500px; /* Ограничиваем ширину */
             background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
             padding: 40px;
             border-radius: 20px;
@@ -359,8 +360,8 @@
             font-size: 1.8rem;
         }
         
-        .avito-color { color: #96cb2e; } /* Avito-ish color */
-        .yandex-color { color: #fc3f1d; } /* Yandex-ish color */
+        .avito-color { color: #96cb2e; } 
+        .yandex-color { color: #fc3f1d; }
 
         .source-list li {
             position: relative;
@@ -378,17 +379,23 @@
             line-height: 1;
         }
 
-        /* --- TECHNICAL SETUP --- */
+        /* --- TECHNICAL SETUP (UPDATED: FLEXBOX CENTER) --- */
         .tech-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            /* Заменили Grid на Flex для идеальной центровки */
+            display: flex;
+            flex-wrap: wrap;
             gap: 30px;
+            justify-content: center; 
         }
 
         .tech-item {
             display: flex;
             gap: 20px;
             align-items: flex-start;
+            
+            /* Размеры карточек во Flex */
+            flex: 1 1 280px; /* Мин ширина 280px */
+            max-width: 400px; /* Чтобы не растягивались на весь экран */
         }
 
         .tech-icon {
@@ -414,6 +421,8 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 0 30px rgba(41, 98, 255, 0.1);
+            max-width: 900px;
+            margin: 0 auto; /* Центруем сам блок */
         }
         
         .audit-section::after {
@@ -473,16 +482,17 @@
         @media (max-width: 768px) {
             h2 { font-size: 2rem; }
             .hero h1 { font-size: 2.2rem; }
-            .nav-links { display: none; } /* Ideally would implement JS toggle */
+            .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
             .btn { width: 100%; }
             .source-item { min-width: 100%; }
+            .case-card { flex: 1 1 100%; max-width: 100%; } /* На мобиле 1 колонка */
+            .tech-item { max-width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <!-- HEADER -->
     <header>
         <div class="container nav-container">
             <div class="logo">Vitaly Zubkov</div>
@@ -499,7 +509,6 @@
         </div>
     </header>
 
-    <!-- HERO SECTION -->
     <section class="hero">
         <div class="container hero-content">
             <h1>Traffic Architect & <span class="highlight">Lead Gen Expert</span></h1>
@@ -510,12 +519,10 @@
         </div>
     </section>
 
-    <!-- PHILOSOPHY SECTION -->
     <section id="philosophy" class="section">
         <div class="container">
             <h2>Почему со мной работают вдолгую?</h2>
             <div class="philosophy-grid">
-                <!-- Card 1 -->
                 <article class="card">
                     <div style="font-size: 2rem; color: var(--accent-blue); margin-bottom: 15px;">
                         <i class="fas fa-filter"></i>
@@ -523,7 +530,6 @@
                     <h3>Фильтрация на входе</h3>
                     <p>Отсекаю "мусорный" трафик минус-словами. Ваш отдел продаж работает только с целевыми лидами.</p>
                 </article>
-                <!-- Card 2 -->
                 <article class="card">
                     <div style="font-size: 2rem; color: var(--accent-blue); margin-bottom: 15px;">
                         <i class="fas fa-chart-pie"></i>
@@ -531,7 +537,6 @@
                     <h3>Прозрачность и Цифры</h3>
                     <p>Никаких отчетов в Excel "на коленке". Интеграция с вашей CRM и автоматические сводные таблицы.</p>
                 </article>
-                <!-- Card 3 -->
                 <article class="card">
                     <div style="font-size: 2rem; color: var(--accent-blue); margin-bottom: 15px;">
                         <i class="fas fa-layer-group"></i>
@@ -543,13 +548,11 @@
         </div>
     </section>
 
-    <!-- CASES SECTION -->
     <section id="cases" class="section">
         <div class="container">
             <h2>Реализованные проекты и ниши</h2>
             <div class="cases-grid">
                 
-                <!-- Card 1: Construction -->
                 <a href="case_construction/" class="case-card">
                     <div>
                         <span class="case-tag">Construction (Flagship)</span>
@@ -562,7 +565,6 @@
                     <span class="case-link">Подробнее <i class="fas fa-external-link-alt"></i></span>
                 </a>
 
-                <!-- Card 2: B2B -->
                 <a href="case_b2b_wholesale/" class="case-card">
                     <div>
                         <span class="case-tag">B2B & Wholesale</span>
@@ -576,7 +578,6 @@
                     <span class="case-link">Подробнее <i class="fas fa-external-link-alt"></i></span>
                 </a>
 
-                <!-- Card 3: EdTech -->
                 <a href="case_edtech/" class="case-card">
                     <div>
                         <span class="case-tag">EdTech & Infobiz</span>
@@ -590,7 +591,6 @@
                     <span class="case-link">Подробнее <i class="fas fa-external-link-alt"></i></span>
                 </a>
 
-                <!-- Card 4: Auto -->
                 <a href="case_auto/" class="case-card">
                     <div>
                         <span class="case-tag">Auto Business</span>
@@ -603,7 +603,6 @@
                     <span class="case-link">Подробнее <i class="fas fa-external-link-alt"></i></span>
                 </a>
 
-                <!-- Card 5: Medicine -->
                 <a href="case_medicine/" class="case-card">
                     <div>
                         <span class="case-tag">Medicine</span>
@@ -620,7 +619,6 @@
         </div>
     </section>
 
-    <!-- TRAFFIC SOURCES -->
     <section id="services" class="section">
         <div class="container">
             <h2>Источники трафика</h2>
@@ -645,7 +643,6 @@
         </div>
     </section>
 
-    <!-- TECHNICAL SETUP -->
     <section class="section">
         <div class="container">
             <h2>Техническая упаковка и Интеграции</h2>
@@ -684,7 +681,6 @@
         </div>
     </section>
 
-    <!-- AUDIT TRIPWIRE -->
     <section class="section">
         <div class="container">
             <div class="audit-section">
@@ -696,7 +692,6 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer id="footer">
         <div class="container footer-cta">
             <h2>Нужен стабильный поток клиентов?</h2>
