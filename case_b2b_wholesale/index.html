@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кейсы: B2B и Оптовая торговля | Vitaly Zubkov</title>
+    <title>Кейсы: B2B и&nbsp;Оптовая торговля | Vitaly Zubkov</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -69,7 +69,7 @@
         .stat-card { 
             background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1px solid var(--border-color); 
             flex: 1 1 250px; max-width: 350px; 
-            text-align: center; /* ИСПРАВЛЕНО: Центровка текста */
+            text-align: center; /* Центровка в Hero */
         }
         .stat-val { font-size: 36px; font-weight: 700; color: var(--accent-cyan); margin-bottom: 8px; display: block; }
         .stat-label { font-size: 14px; color: var(--text-secondary); text-transform: uppercase; }
@@ -85,14 +85,25 @@
             border-radius: 16px;
             padding: 40px;
             border: 1px solid var(--border-color);
+            
             /* Logic for centering: */
             flex: 1 1 450px; /* Base width 450px */
             max-width: 600px; /* Don't get too wide */
             width: 100%;
+            
+            /* ИСПРАВЛЕНИЕ: Центровка текста внутри карточки */
+            text-align: center;
         }
 
-        .project-header { margin-bottom: 30px; }
-        .project-title h3 { font-size: 28px; margin-bottom: 8px; }
+        .project-header { 
+            margin-bottom: 30px;
+            /* Центровка заголовка и даты */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .project-title h3 { font-size: 28px; margin-bottom: 0; line-height: 1.3; }
         .project-meta { font-size: 14px; color: var(--text-secondary); }
         
         /* METRICS INSIDE CARD */
@@ -149,7 +160,7 @@
             border-top: 1px solid #333; 
         }
 
-        /* LIGHTBOX (CENTERED) */
+        /* LIGHTBOX (FULL SIZE) */
         .lightbox { 
             display: none; position: fixed; z-index: 2000; 
             padding-top: 0; left: 0; top: 0; width: 100%; height: 100%; 
@@ -185,9 +196,9 @@
 
     <section class="hero">
         <div class="container">
-            <span class="niche-tag">Ниша: B2B и Оптовая Торговля</span>
-            <h1>Лидогенерация для производителей: Снижение стоимости B2B-заявки в 13 раз</h1>
-            <p class="subhead">Кейсы по оптовой продаже текстиля, швейному производству и стройматериалам.</p>
+            <span class="niche-tag">Ниша: B2B и&nbsp;Оптовая Торговля</span>
+            <h1>Лидогенерация для производителей: Снижение стоимости B2B-заявки в&nbsp;13&nbsp;раз</h1>
+            <p class="subhead">Кейсы по оптовой продаже текстиля, швейному производству и&nbsp;стройматериалам.</p>
             
             <div class="hero-stats">
                 <div class="stat-card">
@@ -212,7 +223,7 @@
             <div class="project-card">
                 <div class="project-header">
                     <div class="project-title">
-                        <h3>1. Поставщик текстиля (Отели / HoReCa)</h3>
+                        <h3>1. Поставщик текстиля (Отели /&nbsp;HoReCa)</h3>
                         <p class="project-meta">Период: Октябрь 2024 – Октябрь 2025 (12 месяцев)</p>
                     </div>
                 </div>
@@ -236,7 +247,7 @@
                     </div>
                 </div>
 
-                <p style="color: #ccc; margin-bottom: 10px;"><strong>Инфраструктура:</strong> С нуля разработан продуктовый лендинг, настроена передача лидов в Telegram, внедрена политика конфиденциальности.</p>
+                <p style="color: #ccc; margin-bottom: 10px;"><strong>Инфраструктура:</strong> С нуля разработан продуктовый лендинг, настроена передача лидов в&nbsp;Telegram, внедрена политика конфиденциальности.</p>
                 
                 <div class="screenshot-container">
                     <img src="../img/textile_horeca.png" alt="Статистика: 1294 заявки по 559 руб" class="zoom-img">
@@ -247,7 +258,7 @@
             <div class="project-card">
                 <div class="project-header">
                     <div class="project-title">
-                        <h3>2. Конструкторское бюро (Лекала и Коллекции)</h3>
+                        <h3>2. Конструкторское бюро (Лекала и&nbsp;Коллекции)</h3>
                         <p class="project-meta">Период: Октябрь 2024 – Февраль 2025</p>
                     </div>
                 </div>
@@ -271,7 +282,7 @@
                     </div>
                 </div>
 
-                <p style="color: #ccc; margin-bottom: 10px;"><strong>Full-Stack подход:</strong> Самостоятельно разработал сайт на Tilda, который показал конверсию 7.68% в сложной B2B-нише.</p>
+                <p style="color: #ccc; margin-bottom: 10px;"><strong>Full-Stack подход:</strong> Самостоятельно разработал сайт на Tilda, который показал конверсию 7.68% в&nbsp;сложной B2B-нише.</p>
                 
                 <div class="screenshot-container">
                     <img src="../img/design_bureau.png" alt="Статистика: 329 заявок по 247 руб" class="zoom-img">
@@ -306,8 +317,8 @@
                     </div>
                 </div>
 
-                <p style="color: #ccc; margin-bottom: 10px;"><strong>Вызов:</strong> Запуск с нуля "с колес", параллельно с созданием КП и поиском производств.</p>
-                <p style="color: #a0a0a0;">Вместо слива бюджета на тесты, сразу вышли на окупаемость 2500% и подтвердили жизнеспособность бизнес-модели.</p>
+                <p style="color: #ccc; margin-bottom: 10px;"><strong>Вызов:</strong> Запуск с нуля "с колес", параллельно с&nbsp;созданием КП и&nbsp;поиском производств.</p>
+                <p style="color: #a0a0a0;">Вместо слива бюджета на тесты, сразу вышли на окупаемость 2500% и&nbsp;подтвердили жизнеспособность бизнес-модели.</p>
                 
                 <div class="screenshot-container">
                     <img src="../img/textile_startup.png" alt="Статистика: ROAS 2500%" class="zoom-img">
@@ -344,7 +355,7 @@
                     <strong>Tech Stack:</strong> Разработка сайта с нуля + Яндекс Метрика + AmoCRM + Telegram бот.
                 </p>
                 <p style="color: #a0a0a0;">
-                    Проект остановлен не из-за маркетинга, а из-за внутренних процессов (клиент не успел собрать отдел продаж) и новых требований к регистрации рекламы. Спрос полностью подтвержден.
+                    Проект остановлен не из-за маркетинга, а&nbsp;из-за внутренних процессов (клиент не успел собрать отдел продаж) и&nbsp;новых требований к&nbsp;регистрации рекламы. Спрос полностью подтвержден.
                 </p>
                 
                 <div class="screenshot-container">
@@ -374,7 +385,7 @@
                         <span>Рост кол-ва лидов</span>
                     </div>
                 </div>
-                <p style="color: #a0a0a0; margin-bottom: 20px;">Полная пересборка семантического ядра и создание конверсионного квиз-лендинга. Рост заявок с 20 до 300 в месяц.</p>
+                <p style="color: #a0a0a0; margin-bottom: 20px;">Полная пересборка семантического ядра и&nbsp;создание конверсионного квиз-лендинга. Рост заявок с&nbsp;20 до&nbsp;300 в&nbsp;месяц.</p>
                 
                 <div class="screenshot-container">
                     <img src="../img/psk_cpl.png" alt="Скриншот стоимости лида" class="zoom-img">
@@ -388,7 +399,7 @@
     <section class="cta-section">
         <div class="container">
             <h2 style="font-size: 36px; margin-bottom: 20px;">Нужен поток оптовых клиентов?</h2>
-            <p class="subhead" style="margin-bottom: 0; margin-left: auto; margin-right: auto;">Умею работать с B2B-трафиком и сложными нишами.</p>
+            <p class="subhead" style="margin-bottom: 0; margin-left: auto; margin-right: auto;">Умею работать с B2B-трафиком и&nbsp;сложными нишами.</p>
             <a href="https://t.me/Vit1010" class="cta-btn">Обсудить проект в Telegram</a>
         </div>
     </section>
