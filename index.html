@@ -39,68 +39,149 @@
         .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 28px; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: var(--transition); border: none; }
         .btn-primary { background: linear-gradient(135deg, var(--accent-blue), #1e40af); color: white; box-shadow: 0 4px 15px rgba(41, 98, 255, 0.3); }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(41, 98, 255, 0.5); }
-        
+        .btn-outline { background: transparent; border: 1px solid var(--accent-blue); color: var(--accent-blue); }
+        .btn-outline:hover { background: rgba(41, 98, 255, 0.1); }
+
+        .highlight { color: var(--accent-blue); }
+        .highlight-green { color: var(--accent-green); } /* Неоновый зеленый для цифр */
+
         h1, h2, h3 { line-height: 1.2; margin-bottom: 1rem; }
         h2 { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; background: linear-gradient(to right, #fff, #a0a0a0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .highlight { color: var(--accent-blue); }
 
         /* --- HEADER --- */
-        header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: rgba(18, 18, 18, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--glass-border); padding: 20px 0; }
+        header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: rgba(18, 18, 18, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--glass-border); padding: 20px 0; }
         .nav-container { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; }
-        
         .nav-links { display: flex; gap: 30px; }
         .nav-links a { font-size: 0.95rem; font-weight: 500; color: var(--text-secondary); }
         .nav-links a:hover { color: var(--text-main); }
-        
         .mobile-menu-btn { display: none; font-size: 1.5rem; color: var(--text-main); background: none; border: none; cursor: pointer; }
 
-        /* --- HERO --- */
+        /* --- HERO SECTION --- */
         .hero { position: relative; height: 100vh; min-height: 600px; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: 80px; overflow: hidden; }
         .hero::before { content: ''; position: absolute; top: 20%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(41, 98, 255, 0.15) 0%, rgba(18, 18, 18, 0) 70%); z-index: -1; pointer-events: none; }
         .hero-content { max-width: 800px; animation: fadeIn 1s ease-out; }
         .hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -1px; }
         .hero p { font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
 
-        /* --- GRIDS (FLEXBOX FIX) --- */
-        .philosophy-grid, .cases-grid, .sources-wrapper, .tech-list {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;
+        /* --- PHILOSOPHY SECTION --- */
+        .philosophy-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
         }
 
-        /* CARDS */
-        .card { background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 30px; border-radius: 16px; transition: var(--transition); flex: 1 1 300px; max-width: 400px; }
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 30px;
+            border-radius: 16px;
+            transition: var(--transition);
+            flex: 1 1 300px;
+            max-width: 400px;
+        }
+
         .card:hover { transform: translateY(-5px); border-color: rgba(41, 98, 255, 0.3); background: rgba(255, 255, 255, 0.05); }
         .card h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--text-main); }
         .card p { color: var(--text-secondary); font-size: 0.95rem; }
 
-        /* CASES */
-        .case-card { background: #181818; border-radius: 16px; padding: 30px; border: 1px solid var(--glass-border); display: flex; flex-direction: column; justify-content: space-between; transition: var(--transition); flex: 1 1 300px; max-width: 450px; width: 100%; }
+        /* --- CASES SECTION --- */
+        .cases-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .case-card {
+            background: #181818;
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid var(--glass-border);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            flex: 1 1 300px;
+            max-width: 450px;
+            width: 100%;
+        }
+
         .case-card:hover { border-color: var(--accent-blue); transform: translateY(-5px); }
         .case-tag { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); margin-bottom: 10px; display: block; }
         .case-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 20px; }
         .case-metrics { margin-bottom: 25px; }
         .metric { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 0.95rem; color: var(--text-secondary); }
-        .metric strong { color: var(--accent-green); font-weight: 700; }
-        .case-link { display: inline-flex; align-items: center; gap: 8px; color: var(--accent-blue); font-weight: 600; font-size: 0.9rem; }
+        
+        /* Жирный зеленый цвет для цифр */
+        .metric strong { color: var(--accent-green); font-weight: 700; } 
 
-        /* SOURCES */
-        .source-item { flex: 1 1 350px; max-width: 500px; background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%); padding: 40px; border-radius: 20px; border: 1px solid var(--glass-border); }
+        .case-link { display: inline-flex; align-items: center; gap: 8px; color: var(--accent-blue); font-weight: 600; font-size: 0.9rem; }
+        .case-link:hover { text-decoration: underline; }
+
+        /* --- TRAFFIC SOURCES --- */
+        .sources-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+        }
+
+        .source-item {
+            flex: 1 1 350px;
+            max-width: 500px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+        }
+
         .source-item h3 { font-size: 2rem; margin-bottom: 20px; display: flex; align-items: center; gap: 15px; }
         .source-icon { font-size: 1.8rem; }
-        .avito-color { color: #96cb2e; } .yandex-color { color: #fc3f1d; }
+        .avito-color { color: #96cb2e; } 
+        .yandex-color { color: #fc3f1d; }
         .source-list li { position: relative; padding-left: 25px; margin-bottom: 12px; color: var(--text-secondary); }
         .source-list li::before { content: '•'; position: absolute; left: 0; color: var(--accent-blue); font-size: 1.2rem; line-height: 1; }
 
-        /* TECH LIST */
-        .tech-item { display: flex; gap: 20px; align-items: flex-start; flex: 1 1 260px; max-width: 400px; }
+        /* --- TECHNICAL SETUP --- */
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center; 
+        }
+
+        .tech-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            flex: 1 1 260px; 
+            max-width: 400px;
+        }
+
         .tech-icon { background: rgba(41, 98, 255, 0.1); color: var(--accent-blue); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
 
-        /* AUDIT */
-        .audit-section { background: linear-gradient(135deg, #1e1e1e, #121212); border: 1px solid var(--accent-blue); border-radius: 24px; padding: 50px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 0 30px rgba(41, 98, 255, 0.1); max-width: 900px; margin: 0 auto; }
+        /* --- AUDIT --- */
+        .audit-section {
+            background: linear-gradient(135deg, #1e1e1e, #121212);
+            border: 1px solid var(--accent-blue);
+            border-radius: 24px;
+            padding: 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(41, 98, 255, 0.1);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .audit-section::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent-blue), transparent); }
         .audit-tag { background: var(--accent-blue); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; display: inline-block; }
         .audit-subtext { color: var(--text-secondary); font-size: 0.9rem; margin-top: 15px; font-style: italic; }
 
-        /* FOOTER */
+        /* --- FOOTER --- */
         footer { border-top: 1px solid var(--glass-border); padding: 80px 0 40px; text-align: center; }
         .footer-cta h2 { font-size: 2rem; margin-bottom: 2rem; }
         .copyright { margin-top: 60px; color: #555; font-size: 0.9rem; }
@@ -112,7 +193,6 @@
             h2 { font-size: 2rem; }
             .hero h1 { font-size: 2.2rem; }
             
-            /* Бургер меню */
             .mobile-menu-btn { display: block; z-index: 1001; }
             
             .nav-links {
@@ -125,11 +205,11 @@
                 padding: 30px;
                 border-bottom: 1px solid var(--glass-border);
                 gap: 20px;
-                display: none; /* Скрыто по умолчанию */
+                display: none; 
             }
 
             .nav-links.active {
-                display: flex; /* Показываем, когда добавлен класс active */
+                display: flex; 
                 animation: fadeIn 0.3s ease;
             }
 
@@ -200,13 +280,14 @@
         <div class="container">
             <h2>Реализованные проекты и ниши</h2>
             <div class="cases-grid">
+                
                 <a href="case_construction/" class="case-card">
                     <div>
                         <span class="case-tag">Construction (Flagship)</span>
                         <h3 class="case-title">Стройка и Ремонт (Мех. штукатурка)</h3>
                         <div class="case-metrics">
-                            <div class="metric"><i class="fas fa-check-circle"></i> Рост замеров: <strong>x2</strong></div>
-                            <div class="metric"><i class="fas fa-check-circle"></i> Снижение цены лида: <strong>-34%</strong></div>
+                            <div class="metric"><i class="fas fa-check-circle"></i> Рост замеров: <strong class="highlight-green">x2</strong></div>
+                            <div class="metric"><i class="fas fa-check-circle"></i> Снижение цены лида: <strong class="highlight-green">-34%</strong></div>
                         </div>
                     </div>
                     <span class="case-link">Подробнее <i class="fas fa-external-link-alt"></i></span>
@@ -218,8 +299,8 @@
                         <h3 class="case-title">Оптовая торговля и Производство</h3>
                         <p style="font-size: 0.9rem; color: #888; margin-bottom: 15px;">Текстиль, Швейные цеха, Стройматериалы.</p>
                         <div class="case-metrics">
-                            <div class="metric"><i class="fas fa-check-circle"></i> Снижение CPL в 13 раз: <strong>650₽</strong></div>
-                            <div class="metric"><i class="fas fa-check-circle"></i> ROAS: <strong>2500%</strong></div>
+                            <div class="metric"><i class="fas fa-check-circle"></i> Снижение CPL в 13 раз: <strong class="highlight-green">650₽</strong></div>
+                            <div class="metric"><i class="fas fa-check-circle"></i> ROAS: <strong class="highlight-green">2500%</strong></div>
                         </div>
                     </div>
                     <span class="case-link">Подробнее <i class="fas fa-external-link-alt"></i></span>
@@ -231,8 +312,8 @@
                         <h3 class="case-title">Онлайн-школы</h3>
                         <p style="font-size: 0.9rem; color: #888; margin-bottom: 15px;">Fashion, Йога, Танцы</p>
                         <div class="case-metrics">
-                            <div class="metric"><i class="fas fa-check-circle"></i> ROAS: <strong>>10 000%</strong></div>
-                            <div class="metric"><i class="fas fa-check-circle"></i> 12 000+ подписчиков по: <strong>71 руб.</strong></div>
+                            <div class="metric"><i class="fas fa-check-circle"></i> ROAS: <strong class="highlight-green">>10 000%</strong></div>
+                            <div class="metric"><i class="fas fa-check-circle"></i> 12 000+ подписчиков по: <strong class="highlight-green">71 руб.</strong></div>
                         </div>
                     </div>
                     <span class="case-link">Подробнее <i class="fas fa-external-link-alt"></i></span>
@@ -244,7 +325,7 @@
                         <h3 class="case-title">Выкуп и продажа авто</h3>
                         <div class="case-metrics">
                             <div class="metric"><i class="fas fa-check-circle"></i> Стабильный поток в перегретой нише</div>
-                            <div class="metric"><i class="fas fa-check-circle"></i> Целевые лиды на выкуп авто</div>
+                            <div class="metric"><i class="fas fa-check-circle"></i> Снижение CPL (Lada): <strong class="highlight-green">-75%</strong></div>
                         </div>
                     </div>
                     <span class="case-link">Подробнее <i class="fas fa-external-link-alt"></i></span>
@@ -256,11 +337,12 @@
                         <h3 class="case-title">Медицина и Стоматология</h3>
                         <div class="case-metrics">
                             <div class="metric"><i class="fas fa-check-circle"></i> Полная загрузка клиники</div>
-                            <div class="metric"><i class="fas fa-check-circle"></i> Лиды на имплантацию</div>
+                            <div class="metric"><i class="fas fa-check-circle"></i> Окупаемость: <strong class="highlight-green">x4-x6</strong></div>
                         </div>
                     </div>
                     <span class="case-link">Подробнее <i class="fas fa-external-link-alt"></i></span>
                 </a>
+
             </div>
         </div>
     </section>
@@ -355,10 +437,8 @@
         const navLinks = document.querySelector('.nav-links');
         const links = document.querySelectorAll('.nav-links a');
 
-        // Toggle menu on click
         mobileBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            // Change icon from bars to times (X)
             const icon = mobileBtn.querySelector('i');
             if (navLinks.classList.contains('active')) {
                 icon.classList.remove('fa-bars');
@@ -369,7 +449,6 @@
             }
         });
 
-        // Close menu when clicking a link
         links.forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
