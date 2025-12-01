@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кейсы: Медицина и Стоматология | Vitaly Zubkov</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-main: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-teal: #00e5ff; /* Акцент для Медицины */
+            --accent-green: #00e676;
+            --border-color: #333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* HEADER */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky; top: 0;
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+        .back-link { font-size: 14px; color: var(--text-secondary); font-weight: 500; }
+        .back-link:hover { color: var(--accent-teal); }
+        .brand { font-weight: 700; }
+
+        /* HERO */
+        .hero { padding: 80px 0 60px; text-align: center; }
+        .niche-tag {
+            display: inline-block;
+            background: rgba(0, 229, 255, 0.1);
+            color: var(--accent-teal);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+        h1 {
+            font-size: 48px; font-weight: 800; line-height: 1.1; margin-bottom: 24px;
+            background: linear-gradient(to right, #fff, #00e5ff);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            max-width: 900px; margin-left: auto; margin-right: auto;
+        }
+        .subhead { font-size: 20px; color: var(--text-secondary); max-width: 800px; margin-bottom: 60px; margin-left: auto; margin-right: auto; }
+
+        /* STATS GRID */
+        .hero-stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
+        .stat-card { 
+            background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1px solid var(--border-color); 
+            flex: 1 1 250px; max-width: 350px; text-align: center;
+        }
+        .stat-val { font-size: 36px; font-weight: 700; color: var(--accent-teal); margin-bottom: 8px; display: block; }
+        .stat-label { font-size: 14px; color: var(--text-secondary); text-transform: uppercase; }
+
+        /* PROJECTS SECTION */
+        .projects-section { padding: 80px 0; border-top: 1px solid var(--border-color); }
+        
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .project-header { 
+            display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 30px; 
+        }
+        
+        .project-title h3 { font-size: 28px; margin-bottom: 0; line-height: 1.3; }
+        .project-title h3 span { display: inline-block; white-space: nowrap; }
+        .project-meta { font-size: 14px; color: var(--text-secondary); }
+        
+        /* METRICS INSIDE CARD */
+        .metrics-grid {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
+            margin-bottom: 30px;
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            border-radius: 12px;
+        }
+        .metric-item { flex: 1 1 160px; text-align: center; max-width: 250px; }
+        .metric-item strong { display: block; font-size: 24px; color: #fff; }
+        .metric-item span { font-size: 13px; color: var(--text-secondary); }
+
+        .highlight-green { color: var(--accent-green) !important; }
+
+        /* SCREENSHOT (FIXED HEIGHT) */
+        .screenshot-container {
+            margin-top: 30px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: 0.3s;
+            cursor: zoom-in;
+            position: relative;
+            height: 240px; width: 100%;
+        }
+        .screenshot-container:hover { border-color: var(--accent-teal); transform: translateY(-5px); }
+        .screenshot-container img { width: 100%; height: 100%; display: block; opacity: 0.9; transition: 0.3s; object-fit: cover; object-position: top center; }
+        .screenshot-container:hover img { opacity: 0.4; }
+        .screenshot-container::after { content: "🔍"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 40px; opacity: 0; pointer-events: none; transition: 0.3s; }
+        .screenshot-container:hover::after { opacity: 1; }
+        .screenshot-caption { position: absolute; bottom: 0; left: 0; width: 100%; padding: 10px; background: rgba(0,0,0,0.8); font-size: 12px; color: #ccc; text-align: center; border-top: 1px solid #333; }
+
+        /* LIGHTBOX */
+        .lightbox { display: none; position: fixed; z-index: 2000; padding-top: 0; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden; background-color: rgba(0,0,0,0.95); opacity: 0; transition: opacity 0.3s ease; align-items: center; justify-content: center; pointer-events: none; }
+        .lightbox.show { display: flex; opacity: 1; pointer-events: auto; }
+        .lightbox-content { margin: 0; display: block; width: auto; max-width: 95%; max-height: 90vh; object-fit: contain; border-radius: 8px; box-shadow: 0 0 20px rgba(0, 229, 255, 0.2); }
+        .close { position: absolute; top: 20px; right: 30px; color: #f1f1f1; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; z-index: 2001; }
+        .close:hover { color: var(--accent-teal); text-decoration: none; }
+
+        /* CTA */
+        .cta-section { padding: 100px 0; text-align: center; border-top: 1px solid var(--border-color); }
+        .cta-btn { display: inline-flex; background: var(--accent-teal); color: #000; padding: 18px 40px; border-radius: 8px; font-weight: 700; font-size: 18px; margin-top: 30px; }
+        .cta-btn:hover { background: #4dd0e1; box-shadow: 0 0 20px rgba(0, 229, 255, 0.4); }
+
+        @media (max-width: 768px) { h1 { font-size: 32px; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <a href="../index.html" class="back-link">← Назад к портфолио</a>
+            <div class="brand">Vitaly Zubkov</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <span class="niche-tag">Ниша: Медицина и&nbsp;Стоматология</span>
+            <h1>Загрузка клиники пациентами: 3&nbsp;000+ лидов в&nbsp;год</h1>
+            <p class="subhead">Кейсы по привлечению первичных пациентов: Стоматология, МРТ, Диагностика.</p>
+            
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <span class="stat-val">1 491%</span>
+                    <span class="stat-label">Макс. ROMI</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-val">800-900 ₽</span>
+                    <span class="stat-label">Средний CPL (Медицина)</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-val highlight-green">x4-x6</span>
+                    <span class="stat-label">Окупаемость (Мин.)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects-section">
+        <div class="container">
+            
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">
+                        <h3>1. Стоматологическая Клиника <span>(Санкт-Петербург)</span></h3>
+                        <p class="project-meta">Период: Март — Сентябрь 2024 (7 месяцев)</p>
+                    </div>
+                </div>
+                
+                <div class="metrics-grid">
+                    <div class="metric-item">
+                        <strong>542 000 ₽</strong>
+                        <span>Бюджет (в мес)</span>
+                    </div>
+                    <div class="metric-item">
+                        <strong class="highlight-green">598</strong>
+                        <span>Лидов (в мес)</span>
+                    </div>
+                    <div class="metric-item">
+                        <strong>910 ₽</strong>
+                        <span>CPL (Имплантация)</span>
+                    </div>
+                    <div class="metric-item">
+                        <strong class="highlight-green">1491%</strong>
+                        <span>ROMI</span>
+                    </div>
+                </div>
+
+                <p style="color: #ccc; margin-bottom: 20px; font-size: 18px;">
+                    <strong>Задача:</strong> Полная загрузка клиники (Имплантация, Терапия) в условиях жесткой конкуренции СПБ.
+                </p>
+                
+                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; margin-bottom: 30px; text-align: left;">
+                    <h4 style="margin-bottom: 10px; color: #fff; text-align: center;">Что сделали:</h4>
+                    <ul style="list-style: disc; margin-left: 20px; color: #aaa;">
+                        <li><strong>Упаковка:</strong> Разработали конверсионный лендинг с лид-магнитом. Конверсия выросла с 4.3% до 12.8%.</li>
+                        <li><strong>Таргетинг:</strong> Использовали гиперлокальную рекламу (радиус 5 км) для захвата жителей района.</li>
+                        <li><strong>Масштаб:</strong> Увеличили бюджет в 9 раз (с 60к до 540к), сохранив цену лида.</li>
+                    </ul>
+                </div>
+                
+                <div class="screenshot-container">
+                    <img src="../img/dental_spb.png" alt="Статистика: 598 лидов, ROMI 1491%" class="zoom-img">
+                    <div class="screenshot-caption">Скриншот: Рост конверсии сайта до 12.8% и стабильный поток</div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">
+                        <h3>2. Медицинский центр <span>(МРТ, УЗИ, Анализы)</span></h3>
+                        <p class="project-meta">Период: 9 мая — 9 ноября 2023 (6 месяцев)</p>
+                    </div>
+                </div>
+                
+                <div class="metrics-grid">
+                    <div class="metric-item">
+                        <strong>2.5 млн ₽</strong>
+                        <span>Бюджет (Всего)</span>
+                    </div>
+                    <div class="metric-item">
+                        <strong class="highlight-green">3 126</strong>
+                        <span>Пациентов</span>
+                    </div>
+                    <div class="metric-item">
+                        <strong>800 ₽</strong>
+                        <span>CPL (Средняя)</span>
+                    </div>
+                    <div class="metric-item">
+                        <strong class="highlight-green">670%</strong>
+                        <span>ROMI</span>
+                    </div>
+                </div>
+
+                <p style="color: #ccc; margin-bottom: 20px; font-size: 18px;">
+                    <strong>Задача:</strong> Выстроить системное привлечение пациентов на диагностику и приемы врачей (УЗИ, Терапевт, Гинеколог).
+                </p>
+                
+                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; margin-bottom: 30px; text-align: left;">
+                    <h4 style="margin-bottom: 10px; color: #fff; text-align: center;">Решение (Сегментация):</h4>
+                    <ul style="list-style: disc; margin-left: 20px; color: #aaa;">
+                        <li><strong>Кластеризация:</strong> Создали отдельные кампании под каждое направление (УЗИ, Анализы, Врачи). Никакой "каши" в трафике.</li>
+                        <li><strong>Офферы:</strong> Использовали триггеры "Без очередей", "Прием сегодня", "Врач рядом". Это повысило CTR на 35%.</li>
+                        <li><strong>Мобильный трафик:</strong> Оптимизировали сайт под смартфоны, увеличив долю мобильных заявок на 42%.</li>
+                    </ul>
+                </div>
+                
+                <div class="screenshot-container">
+                    <img src="../img/med_center_spb.png" alt="Статистика: 3126 лидов по 800 руб" class="zoom-img">
+                    <div class="screenshot-caption">Скриншот: 3000+ заявок за полгода работы</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2 style="font-size: 36px; margin-bottom: 20px;">Нужен поток пациентов в клинику?</h2>
+            <p class="subhead" style="margin-bottom: 0; margin-left: auto; margin-right: auto;">Знаю специфику медицинского маркетинга и прохожу модерацию.</p>
+            <a href="https://t.me/Vit1010" class="cta-btn">Обсудить проект в Telegram</a>
+        </div>
+    </section>
+
+    <div id="lightbox" class="lightbox">
+        <span class="close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <script>
+        const modal = document.getElementById("lightbox");
+        const modalImg = document.getElementById("lightbox-img");
+        const closeBtn = document.getElementsByClassName("close")[0];
+        const images = document.querySelectorAll(".zoom-img");
+
+        images.forEach(img => {
+            img.addEventListener("click", function() {
+                modal.classList.add("show");
+                modalImg.src = this.src;
+            });
+        });
+
+        closeBtn.onclick = function() { modal.classList.remove("show"); }
+        modal.onclick = function(event) { if (event.target === modal) modal.classList.remove("show"); }
+    </script>
+
+</body>
+</html>
