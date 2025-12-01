@@ -166,13 +166,23 @@
         .infra-card {
             background: var(--card-bg); padding: 40px; border-radius: 12px;
             border: 1px solid var(--border-color); transition: 0.3s;
-            /* Ширина 340px, чтобы влезали заголовки */
-            flex: 0 1 340px; 
+            
+            /* ИЗМЕНЕНИЕ: 350px (чтобы влезал длинный заголовок), 0 рост */
+            flex: 0 1 350px; 
             max-width: 400px;
+            text-align: center; /* Центровка текста */
         }
         .infra-card:hover { transform: translateY(-5px); border-color: var(--accent-blue); }
-        .infra-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
-        .infra-icon { font-size: 24px; color: var(--accent-blue); line-height: 1; }
+        
+        .infra-header { 
+            display: flex; 
+            flex-direction: column; /* Иконка над текстом */
+            align-items: center; 
+            gap: 15px; 
+            margin-bottom: 20px; 
+        }
+        
+        .infra-icon { font-size: 32px; color: var(--accent-blue); line-height: 1; }
         .infra-card h4 { font-size: 20px; margin-bottom: 0; line-height: 1.2; }
         .infra-card p { color: var(--text-secondary); font-size: 14px; }
 
@@ -212,7 +222,7 @@
     <section class="hero">
         <div class="container">
             <span class="niche-tag">Ниша: Механизированная штукатурка и Стяжка</span>
-            <h1>Как мы увеличили количество замеров в&nbsp;2&nbsp;раза, снизив их&nbsp;стоимость на&nbsp;34%</h1>
+            <h1>Как мы увеличили количество замеров в 2 раза, снизив их стоимость на 34%</h1>
             <p class="subhead">История масштабирования проекта с рваным бюджетом до системной машины лидогенерации (LTV 16 месяцев).</p>
             
             <div class="hero-stats">
