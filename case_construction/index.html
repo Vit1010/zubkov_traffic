@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кейс: Автобизнес и Дилеры | Vitaly Zubkov</title>
+    <title>Кейс: Механизированная штукатурка | Vitaly Zubkov</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -13,9 +13,8 @@
             --card-bg: #1e1e1e;
             --text-main: #ffffff;
             --text-secondary: #a0a0a0;
-            --accent-orange: #ff9100; /* Акцент для Авто */
+            --accent-blue: #2962ff;
             --accent-green: #00e676;
-            --accent-red: #ff5252;
             --border-color: #333;
         }
 
@@ -25,9 +24,9 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
+            overflow-x: hidden;
         }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
-        
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
         /* HEADER */
@@ -41,15 +40,15 @@
         }
         .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
         .back-link { font-size: 14px; color: var(--text-secondary); font-weight: 500; }
-        .back-link:hover { color: var(--accent-orange); }
+        .back-link:hover { color: var(--accent-blue); }
         .brand { font-weight: 700; }
 
         /* HERO */
         .hero { padding: 80px 0 60px; text-align: center; }
         .niche-tag {
             display: inline-block;
-            background: rgba(255, 145, 0, 0.1);
-            color: var(--accent-orange);
+            background: rgba(41, 98, 255, 0.1);
+            color: var(--accent-blue);
             padding: 6px 12px;
             border-radius: 4px;
             font-size: 12px;
@@ -59,76 +58,66 @@
         }
         h1 {
             font-size: 48px; font-weight: 800; line-height: 1.1; margin-bottom: 24px;
-            background: linear-gradient(to right, #fff, #ff9100);
+            background: linear-gradient(to right, #fff, #a0a0a0);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             max-width: 900px; margin-left: auto; margin-right: auto;
         }
-        .subhead { font-size: 20px; color: var(--text-secondary); max-width: 800px; margin-bottom: 60px; margin-left: auto; margin-right: auto; }
-
-        /* STATS GRID */
-        .hero-stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
-        .stat-card { 
-            background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1px solid var(--border-color); 
-            flex: 1 1 250px; max-width: 350px; text-align: center;
+        .subhead { 
+            font-size: 20px; color: var(--text-secondary); max-width: 800px; 
+            margin-bottom: 60px; margin-left: auto; margin-right: auto; 
         }
-        .stat-val { font-size: 36px; font-weight: 700; color: var(--accent-orange); margin-bottom: 8px; display: block; }
-        .stat-label { font-size: 14px; color: var(--text-secondary); text-transform: uppercase; }
 
-        /* PROJECTS SECTION */
-        .projects-section { padding: 80px 0; border-top: 1px solid var(--border-color); }
-        
-        .project-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 40px;
+        /* HERO STATS (CENTERED) */
+        .hero-stats { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 24px; 
+        }
+        .stat-card {
+            background: var(--card-bg); padding: 30px; border-radius: 12px;
             border: 1px solid var(--border-color);
-            /* Logic for centering: */
-            flex: 1 1 450px; 
-            max-width: 600px; 
-            width: 100%;
-            text-align: center; /* Центровка контента */
+            flex: 1 1 220px; 
+            max-width: 300px;
+            text-align: center;
         }
+        .stat-val { font-size: 36px; font-weight: 700; color: var(--accent-green); margin-bottom: 8px; display: block; }
+        .stat-label { font-size: 14px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
 
-        .project-header { 
-            margin-bottom: 30px;
-            display: flex; flex-direction: column; align-items: center; gap: 10px;
-        }
-        
-        .project-title h3 { font-size: 28px; margin-bottom: 0; line-height: 1.3; }
-        
-        /* ТЕКСТ В СКОБКАХ (Монолитный перенос) */
-        .project-title h3 span {
-            display: inline-block; 
-            white-space: nowrap;
-        }
-        
-        .project-meta { font-size: 14px; color: var(--text-secondary); }
-        
-        /* METRICS INSIDE CARD */
-        .metrics-grid {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
-            margin-bottom: 30px;
-            background: rgba(0,0,0,0.2);
-            padding: 20px;
-            border-radius: 12px;
-        }
-        .metric-item { flex: 1 1 140px; text-align: center; max-width: 250px; }
-        .metric-item strong { display: block; font-size: 24px; color: #fff; }
-        .metric-item span { font-size: 13px; color: var(--text-secondary); }
+        /* CHALLENGE & SOLUTION */
+        .challenge-section { padding: 60px 0; border-top: 1px solid var(--border-color); }
+        .cs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        .cs-col h3 { font-size: 24px; margin-bottom: 16px; color: #fff; }
+        .cs-col p { color: var(--text-secondary); margin-bottom: 20px; }
+        .problem-tag { color: #ff5252; font-weight: 600; }
+        .solution-tag { color: var(--accent-blue); font-weight: 600; }
 
-        .highlight-green { color: var(--accent-green) !important; }
-        .highlight-red { color: var(--accent-red) !important; }
+        /* DATA TABLE */
+        .data-section { padding: 80px 0; background: linear-gradient(180deg, var(--bg-color) 0%, #1a1a1a 100%); }
+        .section-title { font-size: 32px; margin-bottom: 10px; text-align: center; }
+        .section-subtitle { text-align: center; color: var(--text-secondary); margin-bottom: 40px; }
+        .table-container { 
+            background: var(--card-bg); border-radius: 16px; padding: 20px; 
+            border: 1px solid var(--border-color); overflow-x: auto; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3); 
+        }
+        table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        th { text-align: left; padding: 20px; color: var(--text-secondary); font-size: 12px; text-transform: uppercase; border-bottom: 1px solid var(--border-color); }
+        td { padding: 24px 20px; font-size: 16px; border-bottom: 1px solid #2a2a2a; }
+        tr:last-child td { border-bottom: none; }
+        .trend-up, .trend-down { color: var(--accent-green); font-weight: 600; }
+        .highlight-row { background: rgba(41, 98, 255, 0.05); }
+        .highlight-cell { color: var(--accent-blue); font-weight: 800; font-size: 18px; }
 
-        /* SCREENSHOT GRID (FOR COMPARISON) */
+        /* SCREENSHOT GRID (FIXED HEIGHT + CROP) */
         .screenshot-grid {
-            display: flex; /* Flex для центровки */
+            display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 15px;
-            margin-top: 30px;
+            margin-top: 40px;
         }
-
-        /* SCREENSHOT CONTAINER (FIXED HEIGHT + CROP) */
+        
         .screenshot-container {
             border-radius: 12px;
             overflow: hidden;
@@ -138,19 +127,21 @@
             cursor: zoom-in;
             position: relative;
             
-            /* Единый размер для симметрии */
+            /* ФИКСИРОВАННАЯ ВЫСОТА ПРЕВЬЮ */
             height: 240px; 
-            flex: 1 1 250px; /* Чтобы вставали по 2 в ряд или 1 на мобиле */
+            flex: 1 1 250px; /* Гибкая ширина, мин 250px */
             min-width: 250px;
+            max-width: 300px;
         }
-        
-        .screenshot-container:hover { border-color: var(--accent-orange); transform: translateY(-5px); }
+        .screenshot-container:hover { border-color: var(--accent-blue); transform: translateY(-5px); }
         
         .screenshot-container img { 
             width: 100%; height: 100%; 
             display: block; opacity: 0.9; 
             transition: 0.3s; 
-            object-fit: cover; object-position: top center; 
+            /* КРОП КАРТИНКИ */
+            object-fit: cover; 
+            object-position: top center; 
         }
         .screenshot-container:hover img { opacity: 0.4; }
         .screenshot-container::after { content: "🔍"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 40px; opacity: 0; pointer-events: none; transition: 0.3s; }
@@ -175,41 +166,34 @@
         .infra-card {
             background: var(--card-bg); padding: 40px; border-radius: 12px;
             border: 1px solid var(--border-color); transition: 0.3s;
-            
-            /* ИЗМЕНЕНИЕ: Увеличили базу до 340px, чтобы заголовок влез */
+            /* Ширина 340px, чтобы влезали заголовки */
             flex: 0 1 340px; 
             max-width: 400px;
         }
-        .infra-card:hover { transform: translateY(-5px); border-color: var(--accent-orange); }
+        .infra-card:hover { transform: translateY(-5px); border-color: var(--accent-blue); }
         .infra-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
-        .infra-icon { font-size: 24px; color: var(--accent-orange); line-height: 1; }
+        .infra-icon { font-size: 24px; color: var(--accent-blue); line-height: 1; }
         .infra-card h4 { font-size: 20px; margin-bottom: 0; line-height: 1.2; }
         .infra-card p { color: var(--text-secondary); font-size: 14px; }
 
         /* LIGHTBOX */
-        .lightbox { 
-            display: none; position: fixed; z-index: 2000; 
-            padding-top: 0; left: 0; top: 0; width: 100%; height: 100%; 
-            overflow: hidden; background-color: rgba(0,0,0,0.95); 
-            opacity: 0; transition: opacity 0.3s ease; 
-            align-items: center; justify-content: center; pointer-events: none; 
-        }
+        .lightbox { display: none; position: fixed; z-index: 2000; padding-top: 0; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden; background-color: rgba(0,0,0,0.95); opacity: 0; transition: opacity 0.3s ease; align-items: center; justify-content: center; pointer-events: none; }
         .lightbox.show { display: flex; opacity: 1; pointer-events: auto; }
-        .lightbox-content { 
-            margin: 0; display: block; width: auto; 
-            max-width: 95%; max-height: 90vh; object-fit: contain; 
-            border-radius: 8px; box-shadow: 0 0 20px rgba(255, 145, 0, 0.2); 
-        }
+        .lightbox-content { margin: 0; display: block; width: auto; max-width: 95%; max-height: 90vh; object-fit: contain; border-radius: 8px; box-shadow: 0 0 20px rgba(41, 98, 255, 0.2); }
         .close { position: absolute; top: 20px; right: 30px; color: #f1f1f1; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; z-index: 2001; }
-        .close:hover { color: var(--accent-orange); text-decoration: none; }
+        .close:hover { color: var(--accent-blue); text-decoration: none; }
 
         /* CTA */
         .cta-section { padding: 100px 0; text-align: center; border-top: 1px solid var(--border-color); }
-        .cta-btn { display: inline-flex; background: var(--accent-orange); color: #000; padding: 18px 40px; border-radius: 8px; font-weight: 700; font-size: 18px; margin-top: 30px; }
-        .cta-btn:hover { background: #ffab40; box-shadow: 0 0 20px rgba(255, 145, 0, 0.4); }
+        .cta-btn {
+            display: inline-flex; background: var(--accent-blue); color: white;
+            padding: 18px 40px; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 30px;
+        }
+        .cta-btn:hover { background: #1e50e6; box-shadow: 0 0 20px rgba(41, 98, 255, 0.4); }
 
         @media (max-width: 768px) {
             h1 { font-size: 32px; }
+            .cs-grid { grid-template-columns: 1fr; gap: 40px; }
             .hero-stats { justify-content: flex-start; }
             .hero-stats .stat-card { max-width: 100%; }
             .infra-card { flex: 1 1 100%; max-width: 100%; }
@@ -227,140 +211,116 @@
 
     <section class="hero">
         <div class="container">
-            <span class="niche-tag">Ниша: Автобизнес и&nbsp;Дилеры</span>
-            <h1>Система продаж авто: 79 сделок за&nbsp;2&nbsp;месяца</h1>
-            <p class="subhead">Мультибрендовый кейс (Haval, Lada, Китай): Оптимизация стоимости лида и&nbsp;рост продаж.</p>
+            <span class="niche-tag">Ниша: Механизированная штукатурка и Стяжка</span>
+            <h1>Как мы увеличили количество замеров в&nbsp;2&nbsp;раза, снизив их&nbsp;стоимость на&nbsp;34%</h1>
+            <p class="subhead">История масштабирования проекта с рваным бюджетом до системной машины лидогенерации (LTV 16 месяцев).</p>
             
             <div class="hero-stats">
                 <div class="stat-card">
-                    <span class="stat-val">79 авто</span>
-                    <span class="stat-label">Продано (Фев+Март)</span>
+                    <span class="stat-val">+52%</span>
+                    <span class="stat-label">Рост объема заявок</span>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-val">44%</span>
-                    <span class="stat-label">Конверсия в&nbsp;продажу</span>
+                    <span class="stat-val">-34%</span>
+                    <span class="stat-label">Снижение цены замера</span>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-val highlight-green">-75%</span>
-                    <span class="stat-label">Снижение CPL (Lada)</span>
+                    <span class="stat-val">3 813</span>
+                    <span class="stat-label">Обработано лидов</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-val" style="color: #fff;">1.3 млн ₽</span>
+                    <span class="stat-label">Управляемый бюджет</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="projects-section">
-        <div class="container projects-grid">
+    <section class="challenge-section">
+        <div class="container">
+            <div class="cs-grid">
+                <div class="cs-col">
+                    <span class="problem-tag">/// ПРОБЛЕМА</span>
+                    <h3>Хаос и слив бюджета</h3>
+                    <p>Рынок Иваново перегрет. До моего прихода маркетинг был неуправляемым: лид с Директа стоил космических денег, заявки шли "то густо, то пусто".</p>
+                    <p>Бизнес упирался в ресурс собственника, который лично обрабатывал каждый звонок, занимаясь микроменеджментом вместо стратегии.</p>
+                </div>
+                <div class="cs-col">
+                    <span class="solution-tag">/// РЕШЕНИЕ</span>
+                    <h3>Экосистема трафика</h3>
+                    <p>Мы ушли от хаотичных запусков к построению архитектуры. Внедрили связку: <strong>Сетка Авито</strong> (умное присутствие) + <strong>Яндекс.Директ</strong> (горячий спрос).</p>
+                    <p>Все источники завели в единую аналитику, чтобы видеть стоимость не просто клика, а реального выезда на замер.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="data-section">
+        <div class="container">
+            <h2 class="section-title">Эволюция эффективности (2024 vs 2025)</h2>
+            <p class="section-subtitle">Сравнение показателей пиковых сезонов (Июнь–Сентябрь). Масштабирование без потери качества.</p>
             
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-title">
-                        <h3>1. Бренд Haval <span>(Оптимизация стоимости)</span></h3>
-                        <p class="project-meta">Результат внедрения сквозной аналитики</p>
-                    </div>
-                </div>
-                
-                <div class="metrics-grid">
-                    <div class="metric-item">
-                        <strong class="highlight-red" style="text-decoration: line-through; font-size: 18px; color: #666;">2 251 ₽</strong>
-                        <span>CPL (До)</span>
-                    </div>
-                    <div class="metric-item">
-                        <strong class="highlight-green">1 639 ₽</strong>
-                        <span>CPL (После)</span>
-                    </div>
-                    <div class="metric-item">
-                        <strong class="highlight-green">-27.2%</strong>
-                        <span>Экономия бюджета</span>
-                    </div>
-                </div>
-                
-                <div class="screenshot-grid">
-                    <div class="screenshot-container">
-                        <img src="../img/haval_before.png" alt="Статистика Haval ДО" class="zoom-img">
-                        <div class="screenshot-caption">ДО: Цена заявки 2 251 руб</div>
-                    </div>
-                    <div class="screenshot-container">
-                        <img src="../img/haval_after.png" alt="Статистика Haval ПОСЛЕ" class="zoom-img">
-                        <div class="screenshot-caption">ПОСЛЕ: Цена заявки 1 639 руб</div>
-                    </div>
-                </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Показатель</th>
+                            <th>Сезон 2024</th>
+                            <th>Сезон 2025</th>
+                            <th>Динамика</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Бюджет</td>
+                            <td>250 003 ₽</td>
+                            <td>330 338 ₽</td>
+                            <td style="color: #fff;">Масштабирование</td>
+                        </tr>
+                        <tr>
+                            <td>Входящие Лиды (Всего)</td>
+                            <td>823 шт.</td>
+                            <td><strong>1 250 шт.</strong></td>
+                            <td class="trend-up">Рост +52% 📈</td>
+                        </tr>
+                        <tr>
+                            <td>CPL (Цена заявки)</td>
+                            <td>304 ₽</td>
+                            <td><strong>264 ₽</strong></td>
+                            <td class="trend-down">Снижение -13% 📉</td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td>Замеры (Квал. лид)</td>
+                            <td>170 шт.</td>
+                            <td class="highlight-cell">341 шт.</td>
+                            <td class="highlight-cell">РОСТ Х2 (100%) 🚀</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Цена замера (CPQL)</strong></td>
+                            <td>1 470 ₽</td>
+                            <td><strong>969 ₽</strong></td>
+                            <td class="trend-down">Снижение -34% 📉</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-title">
-                        <h3>2. Бренд Lada <span>(Перезапуск и&nbsp;Новый Ленд)</span></h3>
-                        <p class="project-meta">Сравнение старой и&nbsp;новой стратегии</p>
-                    </div>
+            <div class="screenshot-grid">
+                <div class="screenshot-container">
+                    <img src="../img/avito_shop_1.png" alt="Авито Магазин 1" class="zoom-img">
+                    <div class="screenshot-caption">Магазин 1: Статистика за 365 дней</div>
                 </div>
-                
-                <div class="metrics-grid">
-                    <div class="metric-item">
-                        <strong>1.4 млн ₽</strong>
-                        <span>Бюджет (Старый)</span>
-                    </div>
-                    <div class="metric-item">
-                        <strong>1 754 ₽</strong>
-                        <span>CPL (Старый)</span>
-                    </div>
-                    <div class="metric-item">
-                        <strong class="highlight-green">416 ₽</strong>
-                        <span>CPL (Новый)</span>
-                    </div>
+                <div class="screenshot-container">
+                    <img src="../img/avito_shop_2.png" alt="Авито Магазин 2" class="zoom-img">
+                    <div class="screenshot-caption">Магазин 2: Статистика за 365 дней</div>
                 </div>
-
-                <p style="color: #a0a0a0; margin-bottom: 20px;">
-                    <strong>Решение:</strong> Полный перезапуск. Создание нового лендинга. За&nbsp;15 дней работы новой связки получили 125 заявок по&nbsp;416 руб.
-                </p>
-                
-                <div class="screenshot-grid">
-                    <div class="screenshot-container">
-                        <img src="../img/lada_old.png" alt="Статистика Lada (Старая)" class="zoom-img">
-                        <div class="screenshot-caption">Было: 801 заявка по 1754 руб</div>
-                    </div>
-                    <div class="screenshot-container">
-                        <img src="../img/lada_new.png" alt="Статистика Lada (Новая)" class="zoom-img">
-                        <div class="screenshot-caption">Стало: 125 заявок по 416 руб (за 15 дней)</div>
-                    </div>
+                <div class="screenshot-container">
+                    <img src="../img/avito_shop_3.png" alt="Авито Магазин 3" class="zoom-img">
+                    <div class="screenshot-caption">Магазин 3: Статистика за 365 дней</div>
                 </div>
-            </div>
-
-            <div class="project-card" style="border: 1px solid var(--accent-orange);">
-                <div class="project-header">
-                    <div class="project-title">
-                        <h3 style="color: #fff;">3. Сквозная Аналитика <span>(Реальные продажи)</span></h3>
-                        <p class="project-meta" style="color: var(--accent-orange);">Февраль — Март 2025</p>
-                    </div>
-                </div>
-                
-                <p style="color: #ccc; margin-bottom: 20px;">
-                    Главный показатель — не&nbsp;лиды, а&nbsp;деньги в&nbsp;кассе. Мы настроили трекинг до&nbsp;продажи.
-                </p>
-
-                <div class="metrics-grid">
-                    <div class="metric-item">
-                        <strong>79</strong>
-                        <span>Продаж (2 мес)</span>
-                    </div>
-                    <div class="metric-item">
-                        <strong class="highlight-green">42-44%</strong>
-                        <span>Конверсия в&nbsp;продажу</span>
-                    </div>
-                    <div class="metric-item">
-                        <strong>237 млн ₽</strong>
-                        <span>Оборот (Расчетный)</span>
-                    </div>
-                </div>
-
-                <div class="screenshot-grid">
-                    <div class="screenshot-container">
-                        <img src="../img/sales_feb.png" alt="Сквозная аналитика Февраль" class="zoom-img">
-                        <div class="screenshot-caption">Февраль: 32 продажи, COW 42%</div>
-                    </div>
-                    <div class="screenshot-container">
-                        <img src="../img/sales_mar.png" alt="Сквозная аналитика Март" class="zoom-img">
-                        <div class="screenshot-caption">Март: 47 продаж, COW 44%</div>
-                    </div>
+                <div class="screenshot-container">
+                    <img src="../img/avito_shop_4.png" alt="Авито Магазин 4" class="zoom-img">
+                    <div class="screenshot-caption">Магазин 4: Статистика за 365 дней</div>
                 </div>
             </div>
 
@@ -400,9 +360,12 @@
 
     <section class="cta-section">
         <div class="container">
-            <h2 style="font-size: 36px; margin-bottom: 20px;">Нужен поток клиентов в автосалон?</h2>
-            <p class="subhead" style="margin-bottom: 0; margin-left: auto; margin-right: auto;">Умею работать с дилерами, сквозной аналитикой и сложными KPI.</p>
-            <a href="https://t.me/Vit1010" class="cta-btn">Обсудить проект в Telegram</a>
+            <h2 style="font-size: 36px; margin-bottom: 20px;">Хотите такой же системный подход?</h2>
+            <p class="subhead" style="margin-bottom: 0; margin-left: auto; margin-right: auto;">Я не продаю "настройку рекламы". Я строю систему, которая приносит квалифицированные лиды.</p>
+            
+            <a href="https://t.me/Vit1010" class="cta-btn">
+                Обсудить проект в Telegram
+            </a>
         </div>
     </section>
 
